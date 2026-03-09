@@ -164,6 +164,16 @@ If you use this code or reference this project, please cite:
 
 Kim, D. (2023). *GreenEye: Development of Real-Time Traffic Signal Recognition System for Visual Impairments*. In **2023 Korea Software Cogress (KSC)**.
 
+```bibtex
+@inproceedings{kim2023greeneye,
+  author    = {Danu Kim},
+  title     = {GreenEye: Development of Real-Time Traffic Signal Recognition System for Visual Impairments},
+  booktitle = {2023 Korea Software Congress (KSC)},
+  year      = {2023},
+  pages     = {1981--1983}
+}
+```
+
 ## Contact
 
 **Danu Kim**  
