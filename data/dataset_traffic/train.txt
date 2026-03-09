@@ -1,0 +1,8 @@
+./data/dataset_traffic/images/IMG_1122.JPG
+./data/dataset_traffic/images/IMG_1191.JPG
+./data/dataset_traffic/images/IMG_1657.JPG
+./data/dataset_traffic/images/IMG_1714.JPG
+./data/dataset_traffic/images/IMG_1675.JPG
+./data/dataset_traffic/images/IMG_1722.JPG
+./data/dataset_traffic/images/IMG_2405.JPG
+./data/dataset_traffic/images/IMG_2005.JPG

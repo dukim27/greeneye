@@ -1,0 +1,18 @@
+names:
+- Green_Light
+- Green_1
+- Green_2
+- Green_3
+- Green_4
+- Green_5
+- Green_6
+- Green_7
+- Green_8
+- Green_9
+- Green_10
+- Green_11
+- Green_12
+- Red_Light
+nc: 14
+train: ./data/dataset_traffic/train.txt
+val: ./data/dataset_traffic/val.txt

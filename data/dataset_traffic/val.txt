@@ -1,0 +1,2 @@
+./data/dataset_traffic/images/IMG_2670.JPG
+./data/dataset_traffic/images/IMG_1806.JPG
