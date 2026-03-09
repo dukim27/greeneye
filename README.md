@@ -1,5 +1,9 @@
 # GreenEye
 
+[![Paper](https://img.shields.io/badge/Paper-arXiv-blue)](https://arxiv.org/abs/2410.19840)  
+[![Demo](https://img.shields.io/badge/Demo-YouTube-red)](https://www.youtube.com/watch?v=MtvqqKo5j5k&t=67s)  
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
 <p align="center">
   <img src="assets/greeneye_overview.png" alt="GreenEye system overview" width="900"/>
 </p>
@@ -18,60 +22,31 @@ Official repository for **GreenEye: Development of Real-Time Traffic Signal Reco
 
 ## Overview
 
-GreenEye is a real-time traffic signal recognition system designed to help visually impaired pedestrians cross roads more safely. Unlike approaches that recognize only red and green pedestrian signals, GreenEye was developed to recognize both the **traffic light state** and the **remaining countdown number** in real time.
-
-The project was implemented in **Google Colab** using **YOLOv5** and a custom traffic-signal dataset collected from real road environments.
+GreenEye is a real-time traffic signal recognition system designed to help visually impaired pedestrians cross roads more safely. Unlike prior approaches that focused only on recognizing red and green pedestrian signals, GreenEye was developed to recognize both the **traffic light state** and the **remaining countdown number** in real time.
 
 ## Method
 
 GreenEye follows the pipeline below:
 
 1. Collect traffic signal images from real roads using a smartphone
-2. Annotate pedestrian signal colors and countdown digits
+2. Label pedestrian signal colors and countdown digits
 3. Train a custom YOLOv5-based object detection model
 4. Perform real-time recognition on road images and videos
-5. Optionally convert detection results into assistive voice guidance for visually impaired users
+
+The model was implemented in **Google Colab** using **YOLOv5**.
 
 ## Dataset Availability
 
-This repository contains a **small sample subset** of the GreenEye dataset for demonstration of the directory structure, annotation format, and training configuration.
+This repository contains a small sample subset of the GreenEye dataset for demonstration of the directory structure, annotation format, and training configuration.
 
-The sample subset is composed of:
-- **8 training image-label pairs**
-- **2 validation image-label pairs**
+The sample subset is provided to show:
+- the image-label pairing format
+- the repository data structure
+- the configuration files used by the project
 
-These sample files are included to show the expected dataset format:
-- `images/` contains input images
-- `labels/` contains YOLO-format annotation files
-- `train.txt` and `val.txt` define the training and validation splits
-- `data.yaml` defines dataset paths and class names
-
-The **full dataset used in the paper is not fully uploaded** to this repository in order to keep the repository lightweight and manageable. Researchers interested in the complete dataset may contact the author. The full dataset **may be shared upon reasonable request**.
-
-To reproduce the full training results reported in the paper, the complete dataset should be organized in the same directory structure described in this repository.
-
-## Classes
-
-The dataset uses **14 classes**:
-
-- `Green_Light`
-- `Green_1`
-- `Green_2`
-- `Green_3`
-- `Green_4`
-- `Green_5`
-- `Green_6`
-- `Green_7`
-- `Green_8`
-- `Green_9`
-- `Green_10`
-- `Green_11`
-- `Green_12`
-- `Red_Light`
+The complete dataset used in the paper is not fully uploaded to this repository. Researchers interested in the full dataset may contact the author. The full dataset may be shared upon reasonable request.
 
 ## Experimental Setting
-
-The main setting reported in the paper includes:
 
 - Model: **YOLOv5s**
 - Input image size: **640**
@@ -82,15 +57,13 @@ The main setting reported in the paper includes:
 ## Main Results
 
 ### Before balancing the dataset
-- mAP@0.5: **0.64** (7:3 split)
-- mAP@0.5: **0.75** (9:1 split)
+- mAP@0.5: **0.64** (7:3), **0.75** (9:1)
 
 ### After resolving data imbalance
-- mAP@0.5: **0.94** (7:3 split)
-- mAP@0.5: **0.99** (9:1 split)
-- Training time: **0.9 hr** (7:3 split), **1.1 hr** (9:1 split)
-- Final F1 score: **0.96** at confidence **0.574**
-- Red/Green recognition average: **99.5%**
+- mAP@0.5: **0.94** (7:3), **0.99** (9:1)
+- Training time: **0.9 hr** (7:3), **1.1 hr** (9:1)
+- All 14 classes achieved about **99% precision**
+- Final F1 score reached **0.96** at confidence **0.574**
 
 ## Example Detection Results
 
@@ -110,18 +83,41 @@ The main setting reported in the paper includes:
 
 - [KSC 2023 Presentation Slides](slides/greeneye_presentation.pdf)
 
+## Open in Colab
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/dukim27/GreenEye-Development-of-Real-Time-Traffic-Signal-Recognition-System-for-Visual-Impairments/blob/main/GreenEye.ipynb)
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/dukim27/GreenEye-Development-of-Real-Time-Traffic-Signal-Recognition-System-for-Visual-Impairments.git
+cd GreenEye-Development-of-Real-Time-Traffic-Signal-Recognition-System-for-Visual-Impairments
+```
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
 ## Code
 
 The main implementation is provided in:
 
 - `GreenEye.ipynb`
 
-This notebook contains the final Colab-based implementation used for the project. A publicly cleaned version may also be provided as `GreenEye_public_ready.ipynb` if needed.
+This notebook contains the final Colab-based implementation of the GreenEye system.
+
+For quick inference or demonstration, you may optionally place the pretrained weight file below in the `weights/` directory:
+
+- `weights/Balanced_1113_9_1_best.pt`
 
 ## Repository Structure
 
 ```text
-.
+greeneye/
 ├── README.md
 ├── GreenEye.ipynb
 ├── requirements.txt
@@ -133,30 +129,15 @@ This notebook contains the final Colab-based implementation used for the project
 ├── slides/
 │   └── greeneye_presentation.pdf
 ├── weights/
-│   └── Balanced_1113_9_1_best.pt   # optional pretrained weight
+│   └── Balanced_1113_9_1_best.pt   # optional
 └── data/
     └── dataset_traffic/
-        ├── images/
-        ├── labels/
+        ├── data.yaml
         ├── train.txt
         ├── val.txt
-        └── data.yaml
+        ├── images/
+        └── labels/
 ```
-
-## Quick Start
-
-1. Clone the repository.
-2. Open `GreenEye.ipynb` in Google Colab.
-3. Prepare the dataset under `data/dataset_traffic/` using the structure shown above.
-4. If available, place the pretrained weight file under `weights/`.
-5. Run the notebook cells from top to bottom.
-
-## Notes
-
-- This repository archives the implementation and materials associated with the GreenEye project.
-- The included sample dataset is for demonstration only and is not sufficient to reproduce the full paper results.
-- Full-dataset access may be available upon request.
-- Some paths and helper code were lightly cleaned from the original development version for public release.
 
 ## Citation
 
