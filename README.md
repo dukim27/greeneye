@@ -1,4 +1,4 @@
-# GreenEye
+# GreenEye: Development of Real-Time Traffic Signal Recognition System for Visual Impairments
 
 [![Paper](https://img.shields.io/badge/Paper-arXiv-blue)](https://arxiv.org/abs/2410.19840)  
 [![Demo](https://img.shields.io/badge/Demo-YouTube-red)](https://www.youtube.com/watch?v=MtvqqKo5j5k&t=67s)  
